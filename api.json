@@ -1,0 +1,594 @@
+{
+    "source": "mockoon:1.10.0",
+    "data": [
+        {
+            "type": "environment",
+            "item": {
+                "uuid": "",
+                "lastMigration": 12,
+                "name": "Assesment 4",
+                "endpointPrefix": "",
+                "latency": 0,
+                "port": 3001,
+                "routes": [
+                    {
+                        "uuid": "",
+                        "documentation": "Get list of Office",
+                        "method": "get",
+                        "endpoint": "offices",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"current_page\": 1,\n  \"data\": [\n      {{# repeat (queryParam 'total' '10') }}\n      {\n        \"id\": \"{{ faker 'random.uuid' }}\",\n        \"name\": \"{{ faker 'address.streetName' }}\"\n      },\n      {{/ repeat }}\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": null,
+                                        "modifier": null,
+                                        "value": null,
+                                        "isRegex": false
+                                    }
+                                ],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Create new Office",
+                        "method": "post",
+                        "endpoint": "offices",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {\n      \"id\": \"{{ faker 'random.uuid' }}\",\n      \"name\": \"{{ body 'name' }}\",\n      \"address\": \"{{ body 'address'  }}\"\n    } \n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 201,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "body",
+                                        "modifier": "username",
+                                        "value": "username",
+                                        "isRegex": false
+                                    }
+                                ],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Get Office by Office ID",
+                        "method": "get",
+                        "endpoint": "offices/:officeId",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {\n      \"id\": \"{{ urlParam 'officeId' }}\",\n      \"name\": \"{{ faker 'name.findName' }}\",\n      \"address\": \"{{ faker 'address.streetName'  }}\"\n    } \n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Update Office by Office ID",
+                        "method": "put",
+                        "endpoint": "offices/:officeId",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {\n      \"id\": \"{{ urlParam 'officeId' }}\",\n      \"name\": \"{{ body 'name' }}\",\n      \"address\": \"{{ body 'address'  }}\"\n    } \n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Delete Office by ID",
+                        "method": "delete",
+                        "endpoint": "offices/:officeId",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"success\": true,\n  \"message\": \"Data has been deleted\"\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Get the list of User by Office ID",
+                        "method": "get",
+                        "endpoint": "offices/:officeId/users",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {{# repeat (queryParam 'total' '10') }}\n    {\n      \"id\": \"{{ faker 'random.uuid' }}\",\n      \"full_name\": \"{{ faker 'name.findName' }}\",\n      \"email\": \"{{ faker 'internet.email'  }}\",\n      \"password\": \"{{ faker 'internet.password' }}\",\n      \"office_id\": \"{{ urlParam 'officeId'  }}\"\n    } \n    {{/ repeat }}\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Create User by Office ID",
+                        "method": "post",
+                        "endpoint": "offices/:officeId/users",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {\n      \"id\": \"{{ faker 'random.uuid' }}\",\n      \"full_name\": \"{{ body 'full_name' }}\",\n      \"email\": \"{{ body 'email'  }}\",\n      \"password\": \"{{ body 'password' }}\",\n      \"office_id\": \"{{ urlParam 'officeId'  }}\"\n    }\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Get the list of To Do by Office ID",
+                        "method": "get",
+                        "endpoint": "offices/:officeId/todos",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {{# repeat (queryParam 'total' '10') }}\n    {\n      \"id\": \"{{ faker 'random.uuid' }}\",\n      \"name\": \"{{ faker 'name.jobArea' }}\",\n      \"description\": \"{{ faker 'name.jobDescriptor'  }}\",\n      \"is_done\": \"{{ faker 'random.boolean' }}\",\n      \"user_id\": \"{{ faker 'random.number'  }}\"\n    } \n    {{/ repeat }}\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Get list of User",
+                        "method": "get",
+                        "endpoint": "users",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {{# repeat (queryParam 'total' '10') }}\n    {\n      \"id\": \"{{ faker 'random.uuid' }}\",\n      \"full_name\": \"{{ faker 'name.findName' }}\",\n      \"email\": \"{{ faker 'internet.email'  }}\",\n      \"password\": \"{{ faker 'internet.password' }}\",\n      \"office_id\": \"{{ faker 'random.number'  }}\"\n    } \n    {{/ repeat }}\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Create new User",
+                        "method": "post",
+                        "endpoint": "users",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {\n      \"id\": \"{{ faker 'random.uuid' }}\",\n      \"full_name\": \"{{ body 'full_name' }}\",\n      \"email\": \"{{ body 'email'  }}\",\n      \"password\": \"{{ body 'password' }}\",\n      \"office_id\": \"{{ body 'office_id'  }}\"\n    } \n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 201,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Get User by User ID",
+                        "method": "get",
+                        "endpoint": "users/:userId",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {\n      \"id\": \"{{ urlParam 'userId' }}\",\n      \"full_name\": \"{{ faker 'name.findName' }}\",\n      \"email\": \"{{ faker 'internet.email'  }}\",\n      \"password\": \"{{ faker 'internet.password' }}\",\n      \"office_id\": \"{{ faker 'random.number'  }}\"\n    }\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Update User by User ID",
+                        "method": "put",
+                        "endpoint": "users/:userId",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {\n      \"id\": \"{{ faker 'random.uuid' }}\",\n      \"full_name\": \"{{ body 'full_name' }}\",\n      \"email\": \"{{ body 'email'  }}\",\n      \"password\": \"{{ body 'password' }}\",\n      \"office_id\": \"{{ body 'office_id'  }}\"\n    } \n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Delete User by User ID",
+                        "method": "delete",
+                        "endpoint": "users/:userId",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"success\": true,\n  \"message\": \"Data has been deleted\"\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Get the list of To Do by User ID",
+                        "method": "get",
+                        "endpoint": "users/:userId/todos",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {{# repeat (queryParam 'total' '10') }}\n    {\n      \"id\": \"{{ faker 'random.uuid' }}\",\n      \"name\": \"{{ faker 'name.jobArea' }}\",\n      \"description\": \"{{ faker 'name.jobDescriptor'  }}\",\n      \"is_done\": \"{{ faker 'random.boolean' }}\",\n      \"user_id\": \"{{ body 'userId'  }}\"\n    } \n    {{/ repeat }}\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Create To Do by User ID",
+                        "method": "post",
+                        "endpoint": "users/:userId/todos",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {\n      \"id\": \"{{ faker 'random.uuid' }}\",\n      \"name\": \"{{ body 'name' }}\",\n      \"description\": \"{{ body 'description'  }}\",\n      \"is_done\": \"{{ body 'is_done' }}\",\n      \"user_id\": \"{{ urlParam 'userId'  }}\"\n    } \n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Get list of To Do",
+                        "method": "get",
+                        "endpoint": "todos",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {{# repeat (queryParam 'total' '10') }}\n    {\n      \"id\": \"{{ faker 'random.uuid' }}\",\n      \"name\": \"{{ faker 'name.jobArea' }}\",\n      \"description\": \"{{ faker 'name.jobDescriptor'  }}\",\n      \"is_done\": {{ faker 'random.boolean' }},\n      \"user_id\": \"{{ faker 'random.number'  }}\"\n    } \n    {{/ repeat }}\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Create new To Do",
+                        "method": "post",
+                        "endpoint": "todos",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {\n      \"id\": \"{{ faker 'random.uuid' }}\",\n      \"name\": \"{{ body 'name' }}\",\n      \"description\": \"{{ body 'description'  }}\",\n      \"is_done\": {{ body 'is_done' }},\n      \"user_id\": \"{{ body 'user_id'  }}\"\n    }\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 201,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Get To Do by To Do ID",
+                        "method": "get",
+                        "endpoint": "todos/:todoId",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {\n      \"id\": \"{{ urlParam 'todoId' }}\",\n      \"name\": \"{{ faker 'name.jobArea' }}\",\n      \"description\": \"{{ faker 'name.jobDescriptor'  }}\",\n      \"is_done\": {{ faker 'random.boolean' }},\n      \"user_id\": \"{{ faker 'random.number'  }}\"\n    }\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Update To Do by To Do ID",
+                        "method": "put",
+                        "endpoint": "todos/:todoId",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"data\": [\n    {\n      \"id\": \"{{ urlParam 'todoId' }}\",\n      \"name\": \"{{ body 'name' }}\",\n      \"description\": \"{{ body 'description'  }}\",\n      \"is_done\": {{ body 'is_done' }},\n      \"user_id\": \"{{ body 'user_id'  }}\"\n    }\n  ]\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Delete To Do by To Do ID",
+                        "method": "delete",
+                        "endpoint": "todos/:todoId",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"success\": true,\n  \"message\": \"Data has been deleted\"\n}",
+                                "latency": 0,
+                                "statusCode": 200,
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "rulesOperator": "OR",
+                                "disableTemplating": false
+                            }
+                        ],
+                        "enabled": true
+                    }
+                ],
+                "proxyMode": false,
+                "proxyHost": "",
+                "https": false,
+                "cors": true,
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "proxyReqHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ],
+                "proxyResHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ]
+            }
+        }
+    ]
+}
